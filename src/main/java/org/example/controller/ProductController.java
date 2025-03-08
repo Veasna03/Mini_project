@@ -28,4 +28,7 @@ public class ProductController {
     public void ReadBYID(int id) throws SQLException {
         productService.readById(id);
     }
+    public void readByName(String name) throws SQLException {
+        productService.readByName(name);
+    }
 }

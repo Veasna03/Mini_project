@@ -11,5 +11,6 @@ public interface ProductService {
     List<Product> update(int id) throws SQLException;
     List<Product> getAll() throws SQLException;
     void readById(int id) throws SQLException;
+    void readByName(String name) throws SQLException;
 
 }

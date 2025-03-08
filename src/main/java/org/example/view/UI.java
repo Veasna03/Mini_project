@@ -118,7 +118,8 @@ public class UI {
                 }
                 break;
                 case "S": {
-
+                    String name=inputUtil.Inputname("Enter product name: ");
+                productController.readByName(name);
                 }
                 break;
                 case "Se": {
@@ -133,14 +134,6 @@ public class UI {
             }
         }while (true);
 }
-public  Product WriteDate(){
-        Scanner scanner=new Scanner(System.in);
-    System.out.println("Input name:");String name=scanner.next();
-    System.out.println("Input unit price :");int unitPrice=scanner.nextInt();
-    System.out.println("Input qty:");int qty=scanner.nextInt();
-    System.out.println("Input import date: ");String date=scanner.next();
-    Product product=new Product(name,unitPrice,qty,date);
-    return product;
-}
+
 
 }
