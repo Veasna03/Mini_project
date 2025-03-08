@@ -1,14 +1,12 @@
 package org.example.view;
 
-import org.example.Stock;
 import org.example.controller.ProductController;
-import org.example.model.ProductImpl;
-import org.example.model.ProductService;
+import org.example.helper.Menu;
 import org.example.model.entity.Product;
 import org.example.uitl.DB;
-import org.example.validation.Utils;
-import org.example.validation.displayTable;
-import org.example.validation.inputUtil;
+import org.example.helper.Utils;
+import org.example.helper.displayTable;
+import org.example.helper.inputUtil;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,8 +27,8 @@ public class UI {
         ProductController productController=new ProductController();
         DB.createTable();
         do {
-            System.out.println(Utils.green+ " W) Write  R) Read      U) Update    D) Delete    S) Search (name)  Se) Set rows\n" +
-                    "        Sa) Save  Un) Unsave   Ba) Back Up  Re) Restore  E) Exit");
+            Menu menu=new Menu();
+            menu.MenuMain();
 
             String option = inputUtil.option(Utils.blue+"Choose an option: "+Utils.reset);
             switch (option) {

@@ -1,4 +1,4 @@
-package org.example.validation;
+package org.example.helper;
 public class Utils {
     public static String reset = "\u001B[0m";
     public static String blue = "\u001B[34m";

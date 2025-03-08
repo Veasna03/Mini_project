@@ -1,4 +1,4 @@
-package org.example.validation;
+package org.example.helper;
 
 import org.example.model.ProductImpl;
 import org.example.model.entity.Product;
@@ -6,7 +6,6 @@ import org.nocrala.tools.texttablefmt.BorderStyle;
 import org.nocrala.tools.texttablefmt.ShownBorders;
 import org.nocrala.tools.texttablefmt.Table;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class displayTable {

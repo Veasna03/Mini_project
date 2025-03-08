@@ -2,15 +2,13 @@ package org.example.model;
 
 import org.example.model.entity.Product;
 import org.example.uitl.DB;
-import org.example.validation.Utils;
-import org.example.validation.displayTable;
-import org.example.validation.inputUtil;
+import org.example.helper.displayTable;
+import org.example.helper.inputUtil;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 public class ProductImpl implements ProductService {
