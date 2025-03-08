@@ -1,8 +1,26 @@
 package org.example.model.entity;
 
 public class Product {
+    private int id;
     private String name;
     private double unit_price;
+
+    public int getId() {
+        return id;
+    }
+
+    public Product(int id, String name, double unit_price, int qty, String import_date) {
+        this.id = id;
+        this.name = name;
+        this.unit_price = unit_price;
+        this.qty = qty;
+        this.import_date = import_date;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private int qty;
     private String import_date;
 

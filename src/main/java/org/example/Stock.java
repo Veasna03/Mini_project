@@ -3,6 +3,7 @@ package org.example;
 import javax.swing.*;
 
 public class Stock {
+    private  int id;
     private String name;
     private int unit_price;
     private int qty ;
@@ -11,6 +12,21 @@ public class Stock {
         this.name = name;
         this.unit_price = unit_price;
         this.qty = qty;
+    }
+
+    public Stock(int id, String name, int unit_price, int qty) {
+        this.id = id;
+        this.name = name;
+        this.unit_price = unit_price;
+        this.qty = qty;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

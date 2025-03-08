@@ -22,7 +22,7 @@ public class displayTable {
         table.addCell("Qty" );
         table.addCell("Import Date" );
         products.forEach((w)->{
-            table.addCell(ProductImpl.idDatabase+"");
+            table.addCell(w.getId()+"");
             table.addCell(w.getName());
             table.addCell(""+w.getUnit_price());
             table.addCell(w.getQty()+"");

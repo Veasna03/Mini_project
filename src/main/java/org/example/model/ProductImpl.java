@@ -181,10 +181,15 @@ public class ProductImpl implements ProductService {
                            String import_date=rs.getString(5);
                            products.add(new Product(name,unit_price,qty,import_date));
                        }
+                       default:{
+                           System.out.println("Invalid option");
+                       }
 
                    }
+
                }
            }
+        System.out.println("Update Success");
            return products;
     }
 
@@ -202,7 +207,7 @@ public class ProductImpl implements ProductService {
           String import_date=rs.getString(5);
           System.out.println("Id:  "+id + "   Name:  " + name + "   Unit_price:  " + unit_price+"   Import date :"+import_date);
 
-          products.add(new Product(name,unit_price,qty,import_date));
+          products.add(new Product(id,name,unit_price,qty,import_date));
 
       }
       return products;
@@ -223,7 +228,7 @@ public class ProductImpl implements ProductService {
             double unit_price = rs.getDouble(3);
             int qty = rs.getInt(4);
             String import_date = rs.getString(5);
-            productById.add(new Product(name,unit_price,qty,import_date));
+            productById.add(new Product(pid,name,unit_price,qty,import_date));
 
         }
 
