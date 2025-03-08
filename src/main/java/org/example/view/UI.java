@@ -40,17 +40,40 @@ public class UI {
                 }
                 break;
                 case "Sa": {
-               productController.Save(productWrite);
+                    System.out.println(  "'si'\t  for saving insert products and 'su'\t for saving update products or 'b' for back to menu");
+                    String choose = inputUtil.option(  "=>Choose an option: " );
+                    switch (choose) {
+                        case "si": {
+                            //insert
+                            productController.Save(productWrite,choose);
+                            break;
+                        }
+                        case "su": {
+                           productController.Save(productUpdate,choose);
+                        }
+                        break;
 
+                        case "b": {
+                            System.out.println(  "Out case unsave..." );
+                            return;
+                        }
+                        default: {
+                            System.out.println( "Invalid Input..." );
+                        }
 
+                    }
 
                 }
                 break;
                 case "R": {
+                    int id =inputUtil.qty("Enter product id: ");
+                   productController.ReadBYID(id);
 
-                  productList=  productController.getAllProduct();
                 }
                 break;
+                case "Ra":{
+                    productList=  productController.getAllProduct();
+                }break;
                 case "Un": {
                     System.out.println(  "'ui'\t  for saving insert products and 'uu'\t for saving update products or 'b' for back to menu");
                     String choose = inputUtil.option(  "=>Choose an option: " );
@@ -58,11 +81,10 @@ public class UI {
                         case "ui": {
                             //insert
                             displayTable.displaytTable( productWrite);
-
                             break;
                         }
                         case "uu": {
-                            //update
+                            displayTable.displaytTable(productUpdate);
                         }
                         break;
 
@@ -81,9 +103,9 @@ public class UI {
                 break;
                 case "U": {
 
+                    int id=inputUtil.qty("Enter product id: ");
 
-
-
+                  productUpdate=  productController.UpdateProduct(id);
                 }
                 break;
                 case "Ba": {

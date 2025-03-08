@@ -2,6 +2,8 @@ package org.example.model;
 
 import org.example.model.entity.Product;
 import org.example.uitl.DB;
+import org.example.validation.Utils;
+import org.example.validation.displayTable;
 import org.example.validation.inputUtil;
 
 import java.sql.*;
@@ -13,8 +15,10 @@ import java.util.List;
 import java.util.Scanner;
 public class ProductImpl implements ProductService {
     List<Product> productWrite = new ArrayList<>();
+    public static int idDatabase=0;
     @Override
     public List<Product>  write() {
+
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd ");//dd/MM/yy
         Date now = new Date();
         String Date= sdfDate.format(now);
@@ -73,14 +77,12 @@ public class ProductImpl implements ProductService {
 //        return product;
 //    }
     @Override
-    public void Save(List<Product> product) throws SQLException {
+    public void Save(List<Product> product,String option) throws SQLException {
         Connection con = DB.getConnection();
         con.setAutoCommit(false); // Disable auto-commit
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("sa: Save Insert | su: Save Update");
-        System.out.println("Choose option: ");
-        String option = scanner.next(); // Use next() instead of nextLine()
+
         switch (option) {
             case "si": {
                 String insertSQL = "INSERT INTO stock(name, unit_price, qty, import_date) VALUES (?, ?, ?, ?)";
@@ -103,17 +105,17 @@ public class ProductImpl implements ProductService {
             break;
 
             case "su": {
+                System.out.println(idDatabase);
                 String updateSQL = "UPDATE stock SET name=?, unit_price=?, qty=?, import_date=? WHERE id=?";
                 try (PreparedStatement pt = con.prepareStatement(updateSQL)) {
                     for (Product product1 : product) {
-                        System.out.println("Enter Product ID to update:");
-                        int id = scanner.nextInt();
                         pt.setString(1, product1.getName());
                         pt.setDouble(2, product1.getUnit_price());
                         pt.setInt(3, product1.getQty());
                         pt.setString(4, product1.getImport_date());
-                        pt.setInt(5, id);
+                        pt.setInt(5, idDatabase);
                         pt.executeUpdate();
+                        System.out.println("Update Success");
                     }
                     con.commit();
                     product.clear();
@@ -146,23 +148,26 @@ public class ProductImpl implements ProductService {
 
     @Override
     public List<Product> update(int id) throws SQLException {
+        inputUtil input =new inputUtil();
         Connection con=DB.getConnection();
         Scanner scanner = new Scanner(System.in);
-             List<Product> products = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
            Statement st=con.createStatement();
-           ResultSet rs=st.executeQuery("SELECT * FROM stock WHERE id=?");
+           ResultSet rs=st.executeQuery("SELECT * FROM stock ");
            while (rs.next()) {
-               if(rs.getInt("id")==id) {
+               int idDB = rs.getInt("id");
+               if(idDB==id) {
+                   idDatabase=idDB;
+
                    System.out.println("1.Name 2.Unit_price 3.qty 4.import_date");
                    System.out.println("Choose option :");int option=scanner.nextInt();
                    switch (option) {
                        case 1:{
-                           scanner.next();
-                           System.out.println("Change name to:  ");String name=scanner.nextLine();
+                            String newName = input.Inputname("Enter your name: ");
                            int unit_price=rs.getInt(3);
                            int qty=rs.getInt(4);
                            String import_date= rs.getString(5);
-                           products.add(new Product(name,unit_price,qty,import_date));
+                           products.add(new Product(newName,unit_price,qty,import_date));
                        }break;
                        case 2:{
                            System.out.println("Change Unit Price  to:  ");int unit_price=scanner.nextInt();
@@ -178,6 +183,7 @@ public class ProductImpl implements ProductService {
                            String import_date=rs.getString(5);
                            products.add(new Product(name,unit_price,qty,import_date));
                        }
+
                    }
                }
            }
@@ -204,4 +210,27 @@ public class ProductImpl implements ProductService {
       return products;
 
     }
+
+    @Override
+    public void readById(int id) throws SQLException {
+        List<Product> productById = new ArrayList<>();
+        Connection con=DB.getConnection();
+        String searchByIdSql = "SELECT * FROM stock WHERE id = ?";
+        PreparedStatement pstmt = con.prepareStatement(searchByIdSql);
+        pstmt.setInt(1, id);
+        ResultSet rs = pstmt.executeQuery();
+        if (rs.next()) {
+            int pid = rs.getInt(1);
+            String name = rs.getString(2);
+            double unit_price = rs.getDouble(3);
+            int qty = rs.getInt(4);
+            String import_date = rs.getString(5);
+            productById.add(new Product(name,unit_price,qty,import_date));
+
+        }
+
+
+        displayTable.displaytTable(productById);
+
+        }
 }

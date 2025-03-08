@@ -1,5 +1,6 @@
 package org.example.validation;
 
+import org.example.model.ProductImpl;
 import org.example.model.entity.Product;
 import org.nocrala.tools.texttablefmt.BorderStyle;
 import org.nocrala.tools.texttablefmt.ShownBorders;
@@ -22,7 +23,7 @@ public class displayTable {
         table.addCell("Qty" );
         table.addCell("Import Date" );
         products.forEach((w)->{
-            table.addCell("1");
+            table.addCell(ProductImpl.idDatabase+"");
             table.addCell(w.getName());
             table.addCell(""+w.getUnit_price());
             table.addCell(w.getQty()+"");
@@ -30,7 +31,6 @@ public class displayTable {
 
         });
         System.out.println(table.render());
-
 
     }
 

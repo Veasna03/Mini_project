@@ -19,10 +19,13 @@ public class ProductController {
     public List<Product> getAllProduct() throws SQLException {
         return productService.getAll();
     }
-    public void Save(List<Product> products) throws SQLException {
-           productService.Save(products);
+    public void Save(List<Product> products,String option) throws SQLException {
+           productService.Save(products,option);
     }
     public List<Product> UpdateProduct(int id) throws SQLException {
         return productService.update(id);
+    }
+    public void ReadBYID(int id) throws SQLException {
+        productService.readById(id);
     }
 }
