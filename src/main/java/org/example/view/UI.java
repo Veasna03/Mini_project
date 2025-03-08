@@ -131,7 +131,6 @@ public class UI {
                     System.exit(0);
                 }
                 break;
-
             }
         }while (true);
 }
