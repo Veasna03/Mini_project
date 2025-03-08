@@ -8,7 +8,6 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 public class ProductImpl implements ProductService {
@@ -182,6 +181,23 @@ public class ProductImpl implements ProductService {
                }
            }
            return products;
+    }
+
+
+    @Override
+    public void delete(int id) throws SQLException {
+        Connection con=DB.getConnection();
+        String deleteSQL = "DELETE FROM stock WHERE id=?";
+        try(PreparedStatement pt = con.prepareStatement(deleteSQL)) {
+            pt.setInt(1, id);
+            int result =  pt.executeUpdate();
+            if (result == 1) {
+                System.out.println("Delete Success");
+            }else {
+                System.out.println("Delete Fail");
+            }
+
+        }
     }
 
     @Override

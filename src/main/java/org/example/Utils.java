@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.Class.*;
+
 public class Utils {
     static int idUpdate=0;
     static Scanner sc = new Scanner(System.in);
@@ -13,12 +15,12 @@ public class Utils {
      static     List<Stock> stocks = new ArrayList<Stock>();
     public static Connection getConnection() {
 //        ==================================================================
-        String url ="jdbc:postgresql://localhost:5432/Student";
-        String user = "sna";
-        String password = "sna123";
+        String url ="jdbc:postgresql://pg-1395c353-nhanhkimson-904f.i.aivencloud.com:14810/managementsystem";
+        String user = "avnadmin";
+        String password = "AVNS_IGJGESpMLld9oRRLacZ";
 //        ==================================================================
         try{
-            Class.forName("org.postgresql.Driver");
+            forName("org.postgresql.Driver");
             Connection con = DriverManager.getConnection(url, user, password);
             System.out.println("Connected to PostgreSQL database");
             return con;

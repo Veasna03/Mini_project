@@ -25,4 +25,7 @@ public class ProductController {
     public List<Product> UpdateProduct(int id) throws SQLException {
         return productService.update(id);
     }
+    public void DeleteProduct(int id) throws SQLException {
+        productService.delete(id);
+    }
 }

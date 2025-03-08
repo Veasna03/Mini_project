@@ -22,7 +22,7 @@ public class UI {
     inputUtil inputUtil=new inputUtil();
 
     public  void AllInfo() throws SQLException {
-        Scanner scanner=new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         List<Product> productList=new ArrayList<>();
         List<Product> productWrite=new ArrayList<>();
         List<Product> productUpdate=new ArrayList<>();
@@ -91,6 +91,9 @@ public class UI {
                 }
                 break;
                 case "D": {
+                    System.out.println("Enter id of product to delete: ");
+                    int id = scanner.nextInt();
+                    productController.DeleteProduct(id);
                 }
                 break;
                 case "Re": {

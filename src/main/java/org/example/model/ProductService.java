@@ -10,5 +10,5 @@ public interface ProductService {
     void Unsave(List<Product> product) throws SQLException;
     List<Product> update(int id) throws SQLException;
     List<Product> getAll() throws SQLException;
-
+    void delete(int id) throws SQLException;
 }
