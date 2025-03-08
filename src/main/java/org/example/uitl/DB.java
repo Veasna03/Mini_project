@@ -8,9 +8,9 @@ import java.sql.Statement;
 public class DB {
     public static Connection getConnection() {
 //        ==================================================================
-        String url = "jdbc:postgresql://localhost:5432/Student";
-        String user = "sna";
-        String password = "sna123";
+        String url = "jdbc:postgresql://pg-1395c353-nhanhkimson-904f.i.aivencloud.com:14810/managementsystem";
+        String user = "avnadmin";
+        String password = "AVNS_IGJGESpMLld9oRRLacZ";
 //        ==================================================================
         try {
             Class.forName("org.postgresql.Driver");

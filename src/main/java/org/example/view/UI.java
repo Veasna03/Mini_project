@@ -111,10 +111,12 @@ public class UI {
                 }
                 break;
                 case "D": {
+                    System.out.print("Enter product id to delete: ");
+                    int id = scanner.nextInt();
+                    productController.DeleteProduct(id);
                 }
                 break;
                 case "Re": {
-
                 }
                 break;
                 case "S": {
